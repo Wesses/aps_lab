@@ -1,0 +1,21 @@
+INCLUDE <../include.ap>
+
+NAME rsGCD, F;
+
+F := (45, 60);
+
+rsGCD := rs(x, y) (
+
+    (x, x) = x,
+    (x < y) -> ((x, y) = (x, y - x)),
+    (x, y) = (x - y, y)
+
+);
+
+task := (
+
+    /*trace(rsGCD);*/
+    appls(F, rsGCD), 
+    prn(F);
+    
+);

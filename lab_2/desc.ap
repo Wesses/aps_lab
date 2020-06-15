@@ -1,0 +1,66 @@
+INCLUDE <../include.ap>
+
+
+NAMES   FIRST,
+        SECOND,
+        r, 
+        F;
+
+F := ((2+3)*k*k -  k + (-3) = -2*k - k^2);
+
+MARKS k(3),s(3);
+
+FIRST := rs(a,b,c,d,k,r,q)
+(
+    isnum(k) -> (k * r = r $ k),
+    isnum(r) -> (k * r = k $ r),
+    isnum(k) -> (k $ r = r * k),
+    a - b = a + (-1) * b,
+    a - b - c = (a - b) - c,
+
+    (a = b) = (a - b),
+
+    a * (b + c) = a * b + a * c,
+    (b + c) * a = a * b + a * c,
+
+    a $ (b + c) = a $ b + a $ c,
+    (b + c) $ a= a $ b + a $ c,
+
+    (a $ b) $ c = a $ (b * c),
+    (a $ b) * (c $ d) = (a * c) $ ( b * d),
+    (a $ b)^c = a^c $ b^c
+
+);
+
+
+SECOND := rs(a,b,c,dk)
+(
+
+    isatom(k)->k^2 = k^2 $ 1,
+    (a $ b) $ c = a $ (b * c),
+    (a $ b)^c = a^c $ b^c,
+    isatom(k)->(k = k $ 1)
+
+);
+
+
+r := rs(a,b,c,d)
+(
+
+    k^2 $ a + k $ b + c = k(a, b, c),
+    k^2 $ a + k $ b = k(a, b, 0),
+    k(a, b, c) = s(b^2 - 4 * a * c, a, b),
+    (d >= 0)-> (s(d, a, b) = ((((-1) * b - d^0.5) / (2 * a)), ((-1) * b + d^0.5) / (2 * a)))
+
+);
+
+task := (
+
+    prn(F),
+    can_ord(F,FIRST, FIRST),
+    nbt(F, SECOND),
+    prn(F),
+    appls(F,r),
+    prn(F)
+
+);

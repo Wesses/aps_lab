@@ -1,0 +1,46 @@
+INCLUDE <../include.ap>
+
+INCLUDE <cnf.ap>
+INCLUDE <dnf.ap>
+
+
+NAMES
+    rs_1,
+    F,
+    rs_2;
+
+MARKS
+    SHF (2,26,"|"),
+    PRS (2,25,"Y");
+
+
+rs_1 := rs(x)(
+   x = ~(x)
+);
+
+
+rs_2 := rs(x, y)(
+
+    (x <=> y) = ((x -> y) & (y -> x)),
+    (x -> y) = (~(x) |/ y),
+    ~(~(x)) = x,
+    (x & y) = conj_rs(x, y),
+    (x | y) = disj_rs(x, y),
+    (x | y) = (~(x) |/ ~(y)),
+    (x Y y) = (~(x) & ~(y)),
+    ~(~(x)) = x,
+    ~(x |/  y) = (~(x) & ~(y)),
+    ~(x  &  y) = (~(x) |/ ~(y)),
+    ~(x <=> y) = (~(x -> y) |/ ~(y -> x)),
+    ~(x  -> y) = (x & ~(y)),
+    ~(x | y) = (x & y),
+    ~(x Y y) = (x |/ y)
+);
+
+F := (1 -> 1);
+
+task := (
+
+    applytb(F, rs_2),
+    prn(F)
+);

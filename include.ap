@@ -1,0 +1,38 @@
+INCLUDE <../imports/include/std.ap>
+INCLUDE <../imports/include/gen_obj.ap>
+INCLUDE <../imports/include/rsys.ap>
+INCLUDE <../imports/include/array.ap>
+INCLUDE <../imports/include/strat.ap>
+INCLUDE <../imports/include/apply_obj.ap>
+
+/* //////////////////////  common names  /////////////////////// */
+
+NAMES
+    interact,    /* is_trm,*/ 
+    is_trm_env,
+    show_env,
+    new_env,
+    unfold_rs,
+    clock,
+    unfold,     /* prog.ap     */
+    combine,
+
+/* must be defined in or included to prog.ap */
+
+    /*is_act,*/               /* action.ap   */
+    ins,                       /* interact.ap */
+    is_proc_call,              /* task.ap     */
+    service;
+
+INCLUDE <../imports/simulator/intens.ap>
+INCLUDE <../imports/simulator/seq.ap>
+INCLUDE <../imports/simulator/par.ap>
+INCLUDE <../imports/simulator/sim.ap>
+INCLUDE <../imports/simulator/action.ap>
+
+INCLUDE <../imports/md/1-md.ap>
+INCLUDE <../imports/md/2-filters.ap>
+INCLUDE <../imports/md/3-state unfolding.ap>
+INCLUDE <../imports/md/4-trace processing.ap>
+INCLUDE <../imports/md/5-interactive mode.ap>
+

@@ -1,0 +1,55 @@
+INCLUDE <../include.ap>
+
+NAMES 
+    M,
+    first_proc,
+    second_proc,
+    third_proc;
+
+MARKS INTG(3), DIFF(3);
+
+first_proc := proc(x)
+(
+    (x < 0) -> return((-1) * x);
+    return (x)
+);
+
+
+second_proc := proc(K) loc(X, M, Y, z, i)(
+    M:= 100;
+    X := first_proc(arg(K, 1) - arg(K, 2)) / M * 1.0;
+    Y := 0;
+    prn(K);
+    prn(arg(K, 1));
+    prn(arg(K, 2));
+    for(i := arg(K, 1) + X, i < arg(K, 2),  i := i + X,
+        z := subs(x = i,arg(K, 3));
+        Y := Y + z
+    );
+    return (X * (((subs(x = arg(K, 1), arg(K, 3)) + subs(x = arg(K, 2), arg(K, 3))) / 2) + Y))
+);
+
+third_proc := proc(K)loc(X)(
+    X := 0.01;
+    prn(K);
+    (arg(K, 1) == 1) -> 
+        return(
+            (subs(x=(arg(K, 2) + X), arg(K, 3)) - subs(x = (arg(K, 2) - X), arg(K, 3)) ) / 2.0 * X
+        );
+
+        return(
+            (third_proc(DIFF(arg(K, 1) - 1,arg(K, 2) + X,arg(K, 3))) - third_proc(DIFF(arg(K, 1) - 1,arg(K, 2) - X, arg(K, 3)))) / 2.0 * X
+        )
+
+);
+
+NAMES P1,P2;
+P1 := INTG(2, 4, x^2);
+P2 := DIFF(2, 6, x^3 + 5 * x - 8);
+
+task := (
+
+    prn(second_proc(P1)),
+    prn(third_proc(P2))
+    
+);

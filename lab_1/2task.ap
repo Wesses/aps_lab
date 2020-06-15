@@ -1,0 +1,23 @@
+INCLUDE <../include.ap>
+
+NAMES fib_rs, R;
+
+MARK F(1);
+
+R := F(7);
+
+fib_rs:=rs(n)(
+
+    F(0) = 1,
+    F(1) = 1,
+    F(n) = F(n - 1) + F(n - 2)
+
+);
+
+task := (
+
+    trace(fib_rs);
+    applytb(R, fib_rs),
+    prn(R)
+
+);

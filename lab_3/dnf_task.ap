@@ -1,0 +1,29 @@
+NAMES
+    dnf_down,
+    dnf_up,
+    dnf;
+
+
+dnf_down :=rs(x,y,k,r,c)(
+
+    (x |/ y) & (k |/ r) |/ c = x & r |/ y & k |/ y & r |/ x & k |/ c,
+    ((x |/ y) & k) |/ r =  y & k |/ x & k |/ r,
+    x & (y |/ k) |/ r =  x & k |/ x & y |/ r,
+    (x |/ y) & k |/ r = (x & k |/ y & k) |/ x & r |/ y & r,
+    (x |/ y) &  k = ((x & k) |/ (y & k)),
+    x & (y |/  k) = x & y |/ x & k
+);
+
+dnf_up :=rs(x,y,k)(
+
+    (x |/ y)& k = (x & k) |/ (y & k),
+    x & (y |/ k) = (x & y) |/ (x & k),
+    (x & y) & k =  x & y & k
+);
+
+dnf := proc(x)(
+    
+    eliminate(x),
+    can_ord(x, dnf_down, dnf_up),
+    return(x)
+);

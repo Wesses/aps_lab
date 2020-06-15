@@ -1,0 +1,22 @@
+INCLUDE <../include.ap>
+
+NAMES sqrt_rs, R;
+
+MARK F(1);
+
+R := F(256);
+
+sqrt_rs := rs(x, y, k)(
+
+    f(x, y, y) = y,
+    f(x, y, k) = f(x, (y + x / y) / 2, x / y),
+    F(x) = f(x, (x / 2 + x / (x / 2)) / 2, x / (x / 2 + x / (x / 2)) / 2)
+
+);
+
+task := (
+
+    applytb(R, sqrt_rs),
+    prn(R)
+
+);
